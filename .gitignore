@@ -1,0 +1,13 @@
+*.bcf
+*.gz
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.xml
+*.aux
+_minted-main
+main.listing
+*.blg
+*.bbl

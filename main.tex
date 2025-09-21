@@ -1,0 +1,197 @@
+%% main.tex
+%% Document d'exemple général pour montrer toutes les fonctionnalités
+%% Compile avec: pdflatex -shell-escape main.tex
+
+\documentclass[11pt]{rapport}
+
+\usepackage{lipsum}
+\usepackage{url} % Ajout pour \url
+
+\title{Exemple de Rapport Complet}
+
+% Si vous utilisez biblatex, décommentez : 
+%\addbibresource{./biblio.bib} 
+%\makeglossaries 
+%\loadglsentries{glossary}
+
+\begin{document}
+
+%% ========================================
+%% INFORMATIONS DU RAPPORT
+%% ========================================
+\logo{./illustrations/logo.png}
+\unif{Université Exemple}
+\titre{Exemple de Rapport Complet}
+\cours{Cours Exemple}
+\sujet{Sujet Exemple}
+\enseignant{Prof. Exemple}
+\eleves{Élève 1 \\ Élève 2} % Correction de l'accent
+
+\fairemarges
+\fairepagedegarde
+
+%% ========================================
+%% TABLE DES MATIÈRES, FIGURES, TABLEAUX
+%% ========================================
+\clearemptydoublepage
+\renewcommand{\contentsname}{Table des matières}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+
+%% ========================================
+%% INTRODUCTION
+%% ========================================
+\clearemptydoublepage
+\section{Introduction}
+
+Ce document présente un exemple générique illustrant toutes les fonctionnalités de la classe \texttt{rapport}.
+
+\subsection{Objectifs}
+Les objectifs principaux sont :
+
+\begin{itemize}
+    \item Illustrer les sections, sous-sections et sous-sous-sections
+    \item Montrer des listes à puces et numérotées
+    \item Inclure des tableaux et figures
+    \item Illustrer les environnements de code et blocs colorés
+    \item Gérer les annexes et bibliographie
+\end{itemize}
+
+\begin{alertblock}{Remarque importante}
+Cet exemple est complètement générique et prêt à être adapté.
+\end{alertblock}
+
+%% ========================================
+%% CONTENU TECHNIQUE
+%% ========================================
+\section{Contenu Technique}
+
+\subsection{Exemple de figure}
+% Vérifiez que le fichier existe ou commentez cette ligne
+% \insererfigure{./illustrations/img_example.png}{5cm}{Exemple de figure}{fig_exemple}
+
+\subsection{Exemple de tableau}
+
+\begin{table}[ht]
+\centering
+\caption{Tableau d'exemple}
+\label{tab_exemple}
+\begin{tabular}{@{}lcr@{}}
+\toprule
+Nom & Quantité & Prix \\
+\midrule
+Produit A & 10 & 5,00 \\
+Produit B & 20 & 3,50 \\
+Produit C & 5 & 12,00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Environnements de code}
+
+\begin{code}{Exemple de code C}{c}
+#include <stdio.h>
+
+int main() {
+    printf("Hello, world!\n");
+    return 0;
+}
+\end{code}
+
+\begin{codecourt}{python}
+def hello():
+    print("Bonjour, Python !")
+\end{codecourt}
+
+\subsection{Blocs colorés}
+
+\begin{exampleblock}{Exemple de note}
+Ceci est un bloc informatif.
+\end{exampleblock}
+
+\begin{alertblock}{Alerte !}
+Ceci est un bloc d'alerte.
+\end{alertblock}
+
+\begin{block}{Information générale}
+Ceci est un bloc d'information standard.
+\end{block}
+
+%% ========================================
+%% MÉTHODES ET ANALYSES
+%% ========================================
+\section{Méthodes et Analyses}
+
+\subsection{Liste numérotée}
+
+\begin{enumerate}
+    \item Étape 1 : Description
+    \item Étape 2 : Description
+    \item Étape 3 : Description
+\end{enumerate}
+
+\subsection{Équations}
+
+Exemple d'équation inline : \(E=mc^2\).  
+Exemple d'équation centrée :
+\[
+f(x) = \int_0^\infty e^{-t} t^{x-1} dt
+\]
+
+\subsection{Notes et séparateurs}
+\sepline
+
+Du texte supplémentaire pour montrer les séparateurs.
+
+\sepstars
+
+Encore du texte pour illustrer les séparateurs étoilés.
+
+%% ========================================
+%% ANNEXES
+%% ========================================
+\clearemptydoublepage
+
+\appendix
+
+\annexe{Code complet}
+\begin{code}{Fichier principal main.c}{c}
+#include <stdio.h>
+
+int main(void) {
+    printf("Exemple de code complet en annexe.\n");
+    return 0;
+}
+\end{code}
+
+\annexe{Exemple supplémentaire}
+\lipsum[1-3]
+
+\annexe{Languages}
+\selectlanguage{french}
+Ceci est un texte en français.
+
+\selectlanguage{english}
+% Commenté car la référence dummy n'existe pas
+This is the same text in English. % \cite{dummy}
+
+\listofannexes
+
+%% ========================================
+%% BIBLIOGRAPHIE
+%% ========================================
+
+\clearemptydoublepage
+\phantomsection
+\section*{Bibliographie\footnote{
+Version avec BibTeX}}
+\addcontentsline{toc}{section}{Bibliographie}
+
+\nocite{*} % optionnel : inclut toutes les refs du .bib même si non citées
+\bibliographystyle{plain}
+\bibliography{biblio} % fichier biblio.bib (même vide)
+
+\end{document}
