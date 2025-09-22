@@ -73,6 +73,7 @@ sudo apt install texlive-full
   ],
   "latex-workshop.latex.recipe.default": "pdfl+bib+pdfl*2",
   "latex-workshop.formatting.latex": "latexindent",
+  "latex-workshop.view.pdf.ref.autoReload": true
 ```
 
 ## 2 mots sur le projet
