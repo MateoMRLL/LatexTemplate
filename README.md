@@ -86,4 +86,6 @@ Vous pouvez évidemment rajouter des packages, rajouter des commandes... dans le
 Si vous avez un projet avec une biblio utilisez la formule : pdf latex + pdf latex + bibtex + pdf latex.
 Sinon par défaut faite un pdf latex, je vous recommande de créer une formule pdf latex + pdf latex ça passe mieux à la compilation
 
-> Evidemment la classe n'est pas parfaite, je vais surement l'améliorer avec le temps et si par hasard vous voulez apportez des modifications. N'hésitez pas à m'en faire part.
+> Evidemment la classe n'est pas parfaite, je vais surement l'améliorer avec le temps et si par hasard vous voulez apportez des modifications, n'hésitez pas à m'en faire part.
+
+J'ai fait une mise à jour pour que ça soit en anglais. Il est tout à fait possible de "remettre" en français en modifiant les titres. Pas besoin de changer le nom des commandes etc...
