@@ -8,6 +8,12 @@
 \newif\if@smallfont\@smallfontfalse
 \newif\if@twoside\@twosidefalse
 
+\DeclareUnicodeCharacter{2500}{\textendash} % ─
+\DeclareUnicodeCharacter{251C}{\textbar\textendash} % ├
+\DeclareUnicodeCharacter{2514}{\textbackslash\textendash} % └
+\DeclareUnicodeCharacter{2502}{\textbar}    % │
+
+
 \DeclareOption{7pt}{\@smallfonttrue}
 \DeclareOption{smallfont}{\@smallfonttrue}
 \DeclareOption{twoside}{\@twosidetrue}
@@ -47,6 +53,9 @@
 \usetikzlibrary{automata, positioning, shapes.geometric, arrows, circuits.logic.IEC, shadings, shadows}
 \RequirePackage{circuitikz,karnaugh-map,minted,tcolorbox}
 \tcbuselibrary{minted,skins,breakable}
+\RequirePackage[acronym,toc]{glossaries}
+
+
 
 %% ========================================
 %% COLORS
@@ -77,13 +86,13 @@
 \newcommand{\report@students}{Students}
 \newcommand{\report@university}{University}
 \newcommand{\report@logo}{logo.png}
-\newcommand{\report@course}{Course name}
+\newcommand{\report@organization}{organization name}
 
 %% User commands
 \newcommand{\relogo}[1]{\renewcommand{\report@logo}{#1}}
 \newcommand{\university}[1]{\renewcommand{\report@university}{#1}}
 \newcommand{\reporttitle}[1]{\renewcommand{\report@title}{#1}}
-\newcommand{\course}[1]{\renewcommand{\report@course}{#1}}
+\newcommand{\organization}[1]{\renewcommand{\report@organization}{#1}}
 \newcommand{\subject}[1]{\renewcommand{\report@subject}{#1}}
 \newcommand{\supervisor}[1]{\renewcommand{\report@supervisor}{#1}}
 \newcommand{\students}[1]{\renewcommand{\report@students}{#1}}
@@ -101,17 +110,17 @@
         \rule{\linewidth}{0.2 mm} \\[0.4 cm]
         {\huge\bfseries \@title \par}
         \rule{\linewidth}{0.2 mm} \\[1.5 cm]
-        \begin{minipage}{0.5\textwidth}
+        \begin{minipage}{0.48\textwidth}
             \begin{flushleft} \large
                 \emph{\textbf{Student(s):}}\\ \vspace{0.3cm} \report@students
             \end{flushleft}
         \end{minipage}~
-        \begin{minipage}{0.4\textwidth}
+        \begin{minipage}{0.48\textwidth}
             \begin{flushright} \large
                 \emph{\textbf{Supervisor(s):}}\\ \vspace{0.3cm} \report@supervisor
             \end{flushright}
         \end{minipage}\\[4cm]
-        \textbf{Course:} \report@course
+        \textbf{Organization:} \report@organization
         \vfill
         {\large \today\par}
     \end{titlepage}
@@ -128,7 +137,7 @@
     citecolor=Grey,
     pdftitle={\report@title},
     pdfauthor={\report@students},
-    pdfsubject={\report@course},
+    pdfsubject={\report@organization},
     pdfkeywords={report, technical, LaTeX},
     unicode=true,
     bookmarksnumbered=true
@@ -141,6 +150,37 @@
 \def\@m{}%
 }
 }
+% ==============================
+%  APPENDICES HANDLING (clean)
+% ==============================
+
+\renewcommand{\thesection}{\Alph{section}}
+
+\newcommand{\appendixsection}[1]{%
+    \refstepcounter{section}%
+    \section*{Appendix \thesection\quad #1}%
+    \phantomsection
+    \addcontentsline{toc}{section}{Appendix \thesection\texorpdfstring{\quad}{ }#1}%
+    \phantomsection
+    \addcontentsline{loa}{appendix}{Appendix \thesection\texorpdfstring{\quad}{ }#1}%
+}
+
+\newcommand{\listofappendices}{%
+    \cleardoublepage
+    \phantomsection
+    \section*{List of Appendices}%
+    \addcontentsline{toc}{section}{List of Appendices}%
+    \begingroup
+    \parskip=6pt
+    \parindent=0pt
+    \@starttoc{loa}%
+    \endgroup
+}
+
+\newcommand{\l@appendix}[2]{%
+    \par\noindent #1 \dotfill #2\par
+}
+
 
 %% ========================================
 %% HEADER & FOOTER
@@ -148,8 +188,8 @@
 \pagestyle{fancy}
 \fancyhf{}
 \newcommand{\setupheader}{
-    \IfFileExists{illustrations/logoPolytech-petit.png}{
-        \fancyhead[L]{\includegraphics[scale=0.05]{illustrations/logoPolytechPetit.png}\hspace{0.3cm}}
+    \IfFileExists{config/logo_petit.png}{
+        \fancyhead[L]{\includegraphics[scale=0.05]{config/logo_petit.png}\hspace{0.3cm}}
     }{
         \fancyhead[L]{\textcolor{BlueF}{\textbf{\@title}}}
     }
@@ -165,29 +205,8 @@
 \newcommand{\setmargins}{\newgeometry{left=1.5cm,right=1.5cm,top=2.5cm,bottom=3cm}}
 \newcommand{\tableofcontentspage}{\tableofcontents\newpage}
 
-\newcounter{appendix}
-\newcommand{\@appendixlist}{}
-
-\newcommand{\appendixsection}[1]{%
-    \clearemptydoublepage
-    \refstepcounter{appendix}%
-    \section*{Appendix \Alph{appendix}: #1}%
-    \addcontentsline{toc}{section}{Appendix \Alph{appendix}: #1}%
-    \g@addto@macro\@appendixlist{\item Appendix \Alph{appendix}: #1}%
-}
-
-\newcommand{\listofappendices}{%
-    \clearemptydoublepage
-    \section*{List of Appendices}%
-    \addcontentsline{toc}{section}{List of Appendices}%
-    \begin{itemize}
-        \@appendixlist
-    \end{itemize}
-}
-\makeatother
-
 \newcommand{\insertfigure}[4]{%
-    \begin{figure}[ht]
+    \begin{figure}[H]
         \centering
         \includegraphics[height=#2]{#1}
         \caption{#3}
@@ -219,15 +238,36 @@
 \titleformat{\subsection}{\large\bfseries\color{BlueC}}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\normalsize\bfseries\color{Grey}}{\thesubsubsection}{1em}{}
 
+
+%% ========================================
+%% GLOSSARY
+%% ========================================
+
+\newcommand{\gla}[2]{%
+    \ifglsentryexists{#1}%
+    {\gls{#1}}% si l'entrée existe déjà, juste afficher le mot
+    {%
+        \newglossaryentry{#1}{name={#1},description={#2}}%
+    #1 (\glsdesc{#1})% affiche mot + définition la première fois
+}%
+}
+
+
 %% ========================================
 %% MINTED CODE ENVIRONMENTS
 %% ========================================
 \newtcblisting{code}[2]{%
     title={#1}, listing engine=minted, minted language=#2,
-    minted options={fontsize=\small, breaklines, autogobble, numbersep=3mm, linenos},
+    minted options={
+            fontsize=\small,
+            breaklines,
+            autogobble,
+            texcomments=false
+        },
     colback=White, colframe=BlueF, coltitle=White, colbacktitle=BlueF,
     enhanced, breakable, listing only
 }
+
 \newtcblisting{shortcode}[1]{%
     listing engine=minted, minted language=#1,
     minted options={fontsize=\small, breaklines, autogobble},
@@ -251,6 +291,7 @@
     \tcolorbox[beamer,noparskip,breakable,
         colback=LightBlue,colframe=DarkBlue,
         colbacklower=DarkBlue!75!LightBlue,title=#1]}{\endtcolorbox}
+
 
 %% ========================================
 \AtBeginDocument{%

@@ -6,8 +6,15 @@
 *.out
 *.toc
 *.xml
-*.aux
 _minted-main
 main.listing
 *.blg
 *.bbl
+*.acn
+*.ist
+*.listing
+*.glo
+*.glsdefs
+*.aux
+*.pyg
+*.loa

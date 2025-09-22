@@ -16,23 +16,11 @@ sudo apt install texlive-full
 - Extension de Latex Workshop de James WU
 - Rajout du bloc suivant dans les Settings (Ctrl+Shift+P Open Users Settings (JSON))
 
+> Il est aussi possible de compiler avec d'autres trucs (luatex, latexmk...).
+
 ```json
 
  "latex-workshop.latex.tools": [
-    {
-      "name": "latexmk",
-      "command": "latexmk",
-      "args": [
-        "--shell-escape",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "-pdf",
-        "-outdir=%OUTDIR%",
-        "%DOC%"
-      ],
-      "env": {}
-    },
     {
       "name": "pdflatex",
       "command": "pdflatex",
@@ -42,51 +30,67 @@ sudo apt install texlive-full
         "-interaction=nonstopmode",
         "-file-line-error",
         "%DOC%"
-      ],
-      "env": {}
+      ]
     },
     {
       "name": "bibtex",
       "command": "bibtex",
       "args": [
         "%DOCFILE%"
-      ],
-      "env": {}
+      ]
     }
   ],
   "latex-workshop.latex.recipes": [
     {
-      "name": "pdfl+bib+pdfl*2",
+      "name": "pdflatex -> bibtex -> pdflatex*2",
       "tools": [
         "pdflatex",
         "bibtex",
         "pdflatex",
         "pdflatex"
       ]
-    },
-    {
-      "name": "pdflatex",
-      "tools": [
-        "pdflatex"
-      ]
     }
   ],
-  "latex-workshop.latex.recipe.default": "pdfl+bib+pdfl*2",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
   "latex-workshop.formatting.latex": "latexindent",
-  "latex-workshop.view.pdf.ref.autoReload": true
+  "latex-workshop.latex.clean.enabled": true,
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.log",
+    "*.out",
+    "*.toc",
+    "*.fls",
+    "*.fdb_latexmk",
+    "*.bcf",
+    "*.gz",
+    "*.lof",
+    "*.lot",
+    "*.xml",
+    "_minted-main",
+    "main.listing",
+    "*.acn",
+    "*.ist",
+    "*.listing",
+    "*.glo",
+    "*.glsdefs",
+    "*.pyg"
+  ],
 ```
 
 ## 2 mots sur le projet
 
 Il s'agit d'un template avec des commandes customisées. Le pdf généré donnera donc des exemples de ce que vous pouvez faire avec la classe. La classe permet de créer un "nouveau" type de document (genre report, article...) basé sur un des types de documents connus.
+Il est tout à fait possible de "remettre" en français en modifiant les titres. Pas besoin de changer le nom des commandes etc...
 
 Pour chaque projet je vous conseille de créer un repo privé github et de toujours avoir le .gitignore bien rempli des fichiers de build. Vous pouvez aussi vous créer un repo qui contient tout les rapports. L'avantage avec ça c'est que vous pouvez écrire des rapports à plusieurs et reprendre votre rédaction de n'importe quel ordinateur.
 
 Vous pouvez évidemment rajouter des packages, rajouter des commandes... dans le fichier .cls, parfois il faut prendre un peu de temps pour comprendre les erreurs (extension Error Lens sympa) mais ChatGPT le fait très bien.
 
-Si vous avez un projet avec une biblio utilisez la formule : pdf latex + pdf latex + bibtex + pdf latex.
-Sinon par défaut faite un pdf latex, je vous recommande de créer une formule pdf latex + pdf latex ça passe mieux à la compilation
-
 > Evidemment la classe n'est pas parfaite, je vais surement l'améliorer avec le temps et si par hasard vous voulez apportez des modifications, n'hésitez pas à m'en faire part.
 
-J'ai fait une mise à jour pour que ça soit en anglais. Il est tout à fait possible de "remettre" en français en modifiant les titres. Pas besoin de changer le nom des commandes etc...
+> Autre chose : je fais des fix dessus quand pendant que je rédige
+
+- dernier fix : les appendices
