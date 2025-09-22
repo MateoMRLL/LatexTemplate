@@ -1,40 +1,35 @@
 %% main.tex
-%% Document d'exemple général pour montrer toutes les fonctionnalités
-%% Compile avec: pdflatex -shell-escape main.tex
+%% Complete example report showing all features
+%% Compile with: pdflatex -shell-escape main.tex
 
-\documentclass[11pt]{rapport}
+\documentclass[11pt]{custom-report}
 
 \usepackage{lipsum}
-\usepackage{url} % Ajout pour \url
+\usepackage{url}
 
-\title{Exemple de Rapport Complet}
-
-% Si vous utilisez biblatex, décommentez : 
-%\addbibresource{./biblio.bib} 
-%\makeglossaries 
-%\loadglsentries{glossary}
+\title{Complete Example Report}
 
 \begin{document}
 
 %% ========================================
-%% INFORMATIONS DU RAPPORT
+%% REPORT INFORMATION
 %% ========================================
-\logo{./illustrations/logo.png}
-\unif{Université Exemple}
-\titre{Exemple de Rapport Complet}
-\cours{Cours Exemple}
-\sujet{Sujet Exemple}
-\enseignant{Prof. Exemple}
-\eleves{Élève 1 \\ Élève 2} % Correction de l'accent
+\relogo{./illustrations/logo.png}
+\university{Example University}
+\reporttitle{Complete Example Report}
+\course{Example Course}
+\subject{Example Subject}
+\supervisor{Prof. Example}
+\students{Student 1 \\ Student 2}
 
-\fairemarges
-\fairepagedegarde
+\setmargins
+\makecoverpage
 
 %% ========================================
-%% TABLE DES MATIÈRES, FIGURES, TABLEAUX
+%% TABLE OF CONTENTS, FIGURES, TABLES
 %% ========================================
 \clearemptydoublepage
-\renewcommand{\contentsname}{Table des matières}
+\renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
 \newpage
 \listoffigures
@@ -47,52 +42,52 @@
 \clearemptydoublepage
 \section{Introduction}
 
-Ce document présente un exemple générique illustrant toutes les fonctionnalités de la classe \texttt{rapport}.
+This document presents a generic example illustrating all features of the \texttt{custom-report} class.
 
-\subsection{Objectifs}
-Les objectifs principaux sont :
+\subsection{Objectives}
+The main objectives are:
 
 \begin{itemize}
-    \item Illustrer les sections, sous-sections et sous-sous-sections
-    \item Montrer des listes à puces et numérotées
-    \item Inclure des tableaux et figures
-    \item Illustrer les environnements de code et blocs colorés
-    \item Gérer les annexes et bibliographie
+    \item Illustrate sections, subsections, and subsubsections
+    \item Show itemized and numbered lists
+    \item Include tables and figures
+    \item Illustrate code environments and colored blocks
+    \item Handle appendices and bibliography
 \end{itemize}
 
-\begin{alertblock}{Remarque importante}
-Cet exemple est complètement générique et prêt à être adapté.
+\begin{alertblock}{Important Note}
+This example is fully generic and ready to be adapted.
 \end{alertblock}
 
 %% ========================================
-%% CONTENU TECHNIQUE
+%% TECHNICAL CONTENT
 %% ========================================
-\section{Contenu Technique}
+\section{Technical Content}
 
-\subsection{Exemple de figure}
-% Vérifiez que le fichier existe ou commentez cette ligne
-% \insererfigure{./illustrations/img_example.png}{5cm}{Exemple de figure}{fig_exemple}
+\subsection{Example Figure}
+% Uncomment if the file exists
+% \insertfigure{./illustrations/img_example.png}{5cm}{Example Figure}{fig_example}
 
-\subsection{Exemple de tableau}
+\subsection{Example Table}
 
 \begin{table}[ht]
 \centering
-\caption{Tableau d'exemple}
-\label{tab_exemple}
+\caption{Example Table}
+\label{tab_example}
 \begin{tabular}{@{}lcr@{}}
 \toprule
-Nom & Quantité & Prix \\
+Name & Quantity & Price \\
 \midrule
-Produit A & 10 & 5,00 \\
-Produit B & 20 & 3,50 \\
-Produit C & 5 & 12,00 \\
+Product A & 10 & 5.00 \\
+Product B & 20 & 3.50 \\
+Product C & 5 & 12.00 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Environnements de code}
+\subsection{Code Environments}
 
-\begin{code}{Exemple de code C}{c}
+\begin{code}{C Code Example}{c}
 #include <stdio.h>
 
 int main() {
@@ -101,97 +96,94 @@ int main() {
 }
 \end{code}
 
-\begin{codecourt}{python}
+\begin{shortcode}{python}
 def hello():
-    print("Bonjour, Python !")
-\end{codecourt}
+    print("Hello, Python!")
+\end{shortcode}
 
-\subsection{Blocs colorés}
+\subsection{Colored Blocks}
 
-\begin{exampleblock}{Exemple de note}
-Ceci est un bloc informatif.
+\begin{exampleblock}{Example Note}
+This is an informative block.
 \end{exampleblock}
 
-\begin{alertblock}{Alerte !}
-Ceci est un bloc d'alerte.
+\begin{alertblock}{Alert!}
+This is an alert block.
 \end{alertblock}
 
-\begin{block}{Information générale}
-Ceci est un bloc d'information standard.
+\begin{block}{General Information}
+This is a standard information block.
 \end{block}
 
 %% ========================================
-%% MÉTHODES ET ANALYSES
+%% METHODS AND ANALYSES
 %% ========================================
-\section{Méthodes et Analyses}
+\section{Methods and Analyses}
 
-\subsection{Liste numérotée}
+\subsection{Numbered List}
 
 \begin{enumerate}
-    \item Étape 1 : Description
-    \item Étape 2 : Description
-    \item Étape 3 : Description
+    \item Step 1: Description
+    \item Step 2: Description
+    \item Step 3: Description
 \end{enumerate}
 
-\subsection{Équations}
+\subsection{Equations}
 
-Exemple d'équation inline : \(E=mc^2\).  
-Exemple d'équation centrée :
+Inline example: \(E=mc^2\)  
+
+Centered example:
 \[
 f(x) = \int_0^\infty e^{-t} t^{x-1} dt
 \]
 
-\subsection{Notes et séparateurs}
+\subsection{Notes and Separators}
 \sepline
 
-Du texte supplémentaire pour montrer les séparateurs.
+Additional text to demonstrate separators.
 
 \sepstars
 
-Encore du texte pour illustrer les séparateurs étoilés.
+More text to illustrate star separators.
 
 %% ========================================
-%% ANNEXES
+%% APPENDICES
 %% ========================================
 \clearemptydoublepage
-
 \appendix
 
-\annexe{Code complet}
-\begin{code}{Fichier principal main.c}{c}
+\appendixsection{Complete Code}
+\begin{code}{Main File main.c}{c}
 #include <stdio.h>
 
 int main(void) {
-    printf("Exemple de code complet en annexe.\n");
+    printf("Complete example code in appendix.\n");
     return 0;
 }
 \end{code}
 
-\annexe{Exemple supplémentaire}
+\appendixsection{Additional Example}
 \lipsum[1-3]
 
-\annexe{Languages}
+\appendixsection{Languages}
 \selectlanguage{french}
-Ceci est un texte en français.
+This text demonstrates French content in appendix.
 
 \selectlanguage{english}
-% Commenté car la référence dummy n'existe pas
-This is the same text in English. % \cite{dummy}
+This is the same text in English.
 
-\listofannexes
+\listofappendices
 
 %% ========================================
-%% BIBLIOGRAPHIE
+%% BIBLIOGRAPHY
 %% ========================================
-
 \clearemptydoublepage
 \phantomsection
-\section*{Bibliographie\footnote{
-Version avec BibTeX}}
-\addcontentsline{toc}{section}{Bibliographie}
+\section*{Bibliography}
+\addcontentsline{toc}{section}{Bibliography}
 
-\nocite{*} % optionnel : inclut toutes les refs du .bib même si non citées
+\nocite{*} % include all entries from .bib
 \bibliographystyle{plain}
-\bibliography{biblio} % fichier biblio.bib (même vide)
+\bibliography{biblio} % file biblio.bib (can be empty)
 
 \end{document}
